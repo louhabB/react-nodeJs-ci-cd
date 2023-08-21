@@ -1,0 +1,20 @@
+name: Node.js CI
+ON:
+  push:
+    branches: [master]
+  pull_request :
+    branches: [master]
+JobS: 
+    build: 
+      runs-on: self-hosted
+    steps: 
+      - uses :  actions/checkout@v2 
+      - name :  Use Node.js ${{ matrix.node-version }}
+        uses :  actions/stup-node@v1
+        with :
+            node-version: ${{ matrix.node-version }} 
+      - run : 
+            npm install
+            cd frontend && npm install
+            npm run build
+            
